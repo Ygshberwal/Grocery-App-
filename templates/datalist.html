@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% include 'header.html' %}
+ 
+{% block title %} Home {% endblock %}
+ 
+{% block body %}
+
+
+<div class="search-box">
+  <form action="/search" method="GET">
+    <input type="text" name="query" placeholder="Search categories or products">
+    <button type="submit">Search</button>
+  </form>
+</div>
+<div>
+  <h2>Categories</h2>
+</div>
+
+<table>
+  <tr>
+    <th>S.No</th>
+    <th>Name</th>
+  </tr>
+  {% for cat in category %}
+  <tr>
+    <td>{{cat['category_id']}} </td>
+    <td>{{cat['category_name']}} </td>
+  </tr>
+  {%endfor%}
+</table>
+<a class="nav-link" href="/create">Add </a>
+
+{% endblock %}

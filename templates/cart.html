@@ -1,0 +1,44 @@
+
+{% include 'header3.html' %}
+
+
+{% block body %}
+
+<h2 id="your-cart-title">Your Cart</h2>
+<div class="cart-main-div">
+    {% if cart.count()>0 %}
+    <table>
+        <thead>
+            <tr class="table-rows">
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Rate</th>
+                <th>Subtotal</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in cart %}
+            <tr class="table-rows">
+               
+                <td><a  href="/{{ item.cart_id }}/remove" title="Delete this product"><i style="font-size:18px; color: brown;" class="fa">&#xf014;</i>&nbsp;</a>{{ item.cart_name }}</td>
+                <td>{{ item.cart_quantity }}</td>
+                <td>{{ item.cart_rate }}</td>
+                <td>{{item.cart_totalprice}}</td>
+            </tr>
+            {% endfor %}
+            <tr class="table-rows">
+                <td colspan="2"><strong>Grand Total:</strong></td>
+                <td colspan="2" style="text-align: center;" >{{ grand_total }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <form action="{{ url_for('cart') }}" method="post">
+        <button id="cart-buy-button" type="submit">Buy</button>
+    </form>
+    {% else %}
+    <p>Your cart is empty.</p>
+    {% endif %}
+</div>
+{% endblock %}
+

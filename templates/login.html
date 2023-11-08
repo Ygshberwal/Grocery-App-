@@ -1,0 +1,20 @@
+
+{% include 'header1.html' %}
+ 
+{% block body %}
+
+    <h1 id="login-title">User Login  </h1>
+    <div class="login-main-div">
+    <form method="POST", action="">
+        {{ form.hidden_tag() }}
+        {{ form.username }}<br><br>
+        {{ form.password }}<br><br>
+        {{ form.submit }}<br><br>
+
+    </form>
+    
+    Don't have an account? <a class="links" id="sign-up-link" href="{{url_for('register')}}">SignUp</a><br>
+    <a class="links" href="{{url_for('manager_login')}}">Manager Login</a><br>
+</div>
+
+    {% endblock %}

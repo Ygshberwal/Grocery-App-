@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% include 'header.html' %}
+ 
+{% block title %} Home {% endblock %}
+ 
+{% block body %}
+
+
+
+<div>
+  <h2>Products</h2>
+</div>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Rate </th>
+    <th>Quantity remaining</th>
+
+  </tr>
+  {% for pod in products %}
+  <tr>
+ 
+    <td>{{pod['product_name']}} </td>
+    <td>{{pod['product_rate']}} </td>
+    <td>{{pod['product_quantity']}} </td>
+    
+  </tr>
+  {%endfor%}
+</table><br>
+
+
+{% endblock %}

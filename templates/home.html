@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% include 'header1.html' %}
+ 
+ 
+ 
+{% block title %} Home {% endblock %}
+ 
+ 
+ 
+{% block body %}
+<div class="home-page-body">
+
+    <h4 id="home-page-title">Home page</h4>
+<div class="login-links-div">
+    <a  class="login-links" href="{{url_for('login')}}">User Login</a><br><br>
+
+    <a class="login-links" href="{{url_for('manager_login')}}">Manager Login</a><br>
+    </div>
+</div>
+{% endblock %}

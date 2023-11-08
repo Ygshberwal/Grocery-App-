@@ -1,0 +1,19 @@
+{% include 'header1.html' %} 
+ 
+{% block body %}
+    <h2 id="login-title">Manager Login</h2>
+    <div class="login-main-div">
+    <form method="POST", action="">
+        {{ form.hidden_tag() }}
+        {{ form.username }}<br><br>
+        {{ form.password }}<br><br>
+        {{ form.submit }}<br><br>
+
+    </form>
+        
+
+    <!-- <a href="manager_register">Register</a><br>     -->
+    <a class="links" href="login">User login</a>
+
+    </div>
+{% endblock %}
