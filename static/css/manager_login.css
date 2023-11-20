@@ -1,0 +1,17 @@
+#manager-login-title{
+    text-align: center;
+        font-size: 30px;
+        padding-bottom: 2px;
+}
+
+.manager-login-main-div{
+    border: 2px silver solid;
+        background-color: rgba(244, 164, 16, 0.135);
+        width: 30%;
+        margin: 4% 35%;
+        margin-top: 0;
+        padding: 3%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+}

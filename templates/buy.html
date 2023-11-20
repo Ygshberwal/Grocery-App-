@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% include 'header3.html' %}
+ 
+ 
+ 
+{% block title %} Home {% endblock %}
+ 
+ 
+ 
+{% block body %}
+<div class="container">
+<form action='' method = "POST">
+    {{cart_user}}'s Dashboard
+
+ <h3>{{pod.product_name}}</h3>
+Rate per unit: {{pod.product_rate}}<br>
+
+<!-- Quantity remaining:{{pod.product_quantity}}<br> -->
+
+
+<label for="quantity">Quantity:</label> 
+<input type="number"  name = "quantity" class="form-control" placeholder="Quantity"min="1" max="{{pod.product_quantity}}"/><br>
+
+
+
+<input type="submit" name="submit" value="Buy" class="btn btn-warning">
+
+
+</form>
+
+</div>
+
+{% endblock %}
+
+

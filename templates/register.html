@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% include 'header1.html' %}
+ 
+ 
+ 
+{% block title %} Home {% endblock %}
+ 
+ 
+ 
+{% block body %}
+    <h1 id="login-title">Register page  </h1>
+    <div class="login-main-div">
+    <form method="POST", action="">
+        {{ form.hidden_tag() }}
+        {{ form.username }}
+        {{ form.password }}<br><br>
+        {{ form.submit }}<br><br>
+
+    </form>
+    Already have an account? <a href="{{url_for('login')}}">Login</a>
+</div>
+
+
+    
+    
+{% endblock %}

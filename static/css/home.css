@@ -1,0 +1,36 @@
+.home-header{
+    background-color: rgb(107, 255, 177);
+    margin-top: 5px;
+    border-radius: 7px;
+    position: sticky;
+    top: 0;
+}
+.home-page-body{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#home-page-title{
+    padding-bottom: 30px;
+    font-size: 45px;
+}
+
+.login-links-div{
+    display: flex;
+}
+
+.login-links{
+    border: 1.3px black solid;
+    border-radius: 10px;
+    padding: 5px;
+    margin :10px;
+    background-color: rgba(42, 195, 242, 0.5);
+    color: black;
+    
+}
+
+.login-links:hover{
+    background-color: rgba(38, 193, 245, 0.731)
+}
