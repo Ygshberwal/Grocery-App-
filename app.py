@@ -403,6 +403,16 @@ def searchh():
 #thank you note
 @app.route('/user_home')
 def thanku():
+<<<<<<< HEAD
+=======
+    user_id = session.get('user_id')
+    user_obj = User.query.filter_by(id=user_id).first()
+    cart_user = user_obj.username
+
+    # Clear the cart after buying
+    Cart.query.filter_by(cart_user=cart_user).delete()
+    db.session.commit()
+>>>>>>> Cart_buyed_item_deleted
     return render_template("user_home.html")
 
 if __name__=="__main__":

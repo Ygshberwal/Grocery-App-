@@ -4,7 +4,11 @@
 
 {% block body %}
 
-<h2 id="your-cart-title">Your Cart</h2>
+
+{% if cart.count()>0 %}
+<h2 id="your-cart-title"> {{cart[0].cart_user}}'s Cart</h2>
+{% endif %}
+    
 <div class="cart-main-div">
     {% if cart.count()>0 %}
     <table>
