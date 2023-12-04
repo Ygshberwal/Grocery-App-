@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% include 'header1.html' %}
+{% include 'header.html' %}
  
  
  
@@ -8,12 +8,7 @@
  
  
 {% block body %}
-<<<<<<< HEAD
     <h1>Register page  </h1>
-=======
-    <h1 id="login-title">Register page  </h1>
-    <div class="login-main-div">
->>>>>>> Cart_buyed_item_deleted
     <form method="POST", action="">
         {{ form.hidden_tag() }}
         {{ form.username }}
@@ -22,12 +17,4 @@
 
     </form>
     Already have an account? <a href="{{url_for('login')}}">Login</a>
-<<<<<<< HEAD
-=======
-</div>
-
-
-    
-    
->>>>>>> Cart_buyed_item_deleted
 {% endblock %}

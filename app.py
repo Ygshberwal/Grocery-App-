@@ -97,7 +97,7 @@ def login():
             if bcrypt.check_password_hash(user.password,form.password.data):
                 login_user(user)
                 session['user_id']=user.id
-                return redirect(url_for('dashboard'))
+                return redirect(url_for('user_dashboard'))
             
     return render_template("login.html",form=form)
 
@@ -136,26 +136,26 @@ def manager_login():
         if manager:
             if (manager.password==form.password.data):
                 login_user(manager)
-                return redirect(url_for('dashboard2'))
+                return redirect(url_for('manager_dashboard'))
     return render_template("manager_login.html",form=form)
 
 
 #user dashboard
-@app.route('/dashboard', methods=['POST','GET'])
+@app.route('/user_dashboard', methods=['POST','GET'])
 @login_required
-def dashboard():
+def user_dashboard():
     category = Categories.query.all()
     product=Products.query.all()
     #products = Products.query.filter_by(p_category_id=category_id).all()
-    return render_template("dashboard.html",category=category,product=product)
+    return render_template("user_dashboard.html",category=category,product=product)
 
 #manager dashboard
-@app.route('/dashboard2', methods=['POST','GET'])
+@app.route('/manager_dashboard', methods=['POST','GET'])
 @login_required
-def dashboard2():
+def manager_dashboard():
     category = Categories.query.all()
     product=Products.query.all()
-    return render_template("dashboard2.html",category=category,product=product)
+    return render_template("manager_dashboard.html",category=category,product=product)
 
 
 @app.route('/logout', methods=['POST','GET'])
@@ -186,7 +186,7 @@ def create():
         )
         db.session.add(category)
         db.session.commit()
-        return redirect('/dashboard2')
+        return redirect('/manager_dashboard')
 
 #category list
 @app.route('/list')
@@ -202,7 +202,7 @@ def cdelete(category_id):
         if cats:
             db.session.delete(cats)
             db.session.commit()
-            return redirect('/dashboard2')
+            return redirect('/manager_dashboard')
     return render_template('delete.html')
 
 #edit category
@@ -215,7 +215,7 @@ def cedit(category_id):
         if cats:
             cats.category_name=c_name
             db.session.commit()       
-            return redirect('/dashboard2')
+            return redirect('/manager_dashboard')
         
     return render_template('createpage.html', cats=cats)
 
@@ -231,7 +231,7 @@ def show_products(category_id):
 def add(category_id):
     category = Categories.query.get(category_id)
     if not category:
-        return redirect('/dashboard2')
+        return redirect('/manager_dashboard')
 
     if request.method == 'POST':
         p_name = request.form['product_name']
@@ -253,7 +253,7 @@ def add(category_id):
         )
         db.session.add(prod)
         db.session.commit()
-        return redirect('/dashboard2')
+        return redirect('/manager_dashboard')
 
     return render_template('create_product.html', category=category)
 
@@ -262,7 +262,7 @@ def add(category_id):
 def edit(product_id):
     existing_prod=Products.query.get(product_id)
     if not existing_prod:
-        return redirect('/dashboard2')
+        return redirect('/manager_dashboard')
 
     if request.method == 'POST':
         p_name = request.form['product_name']
@@ -280,7 +280,7 @@ def edit(product_id):
             if quantity_increase:
                 existing_prod.product_quantity += quantity_increase
             db.session.commit()
-            return redirect('/dashboard2')
+            return redirect('/manager_dashboard')
         
     return render_template('update.html', existing_prod=existing_prod)
 
@@ -293,7 +293,7 @@ def delete(product_id):
         if pod:
             db.session.delete(pod)
             db.session.commit()
-            return redirect('/dashboard2')
+            return redirect('/manager_dashboard')
     return render_template('delete.html')
 
 
@@ -330,7 +330,7 @@ def buy(product_id):
                 pod.product_quantity-=quantity
 
                 db.session.commit()
-                return redirect('/dashboard')
+                return redirect('/user_dashboard')
         else:
             return redirect("/login")
             
@@ -379,12 +379,12 @@ def search():
     query = request.args.get('query')
     
     if not query:
-        return redirect('/dashboard2')
+        return redirect('/manager_dashboard')
     product = Products.query.filter(Products.product_name.ilike(f'%{query}%')).all()
     category = Categories.query.filter(Categories.category_name.ilike(f'%{query}%')).all()
     # price = Products.query.filter(Products.p_rate.ilike(f'%{query}%')).all()
     
-    return render_template('dashboard2.html', category=category, product=product)
+    return render_template('manager_dashboard.html', category=category, product=product)
 
 
 #search in user
@@ -393,26 +393,16 @@ def searchh():
     query = request.args.get('query', '').strip()
     
     if not query:
-        return redirect('/dashboard')
+        return redirect('/user_dashboard')
     
     categories = Categories.query.filter(Categories.category_name.ilike(f'%{query}%')).all()
     products = Products.query.filter(Products.product_name.ilike(f'%{query}%')).all()
     
-    return render_template('dashboard.html', category=categories, product=products)
+    return render_template('user_dashboard.html', category=categories, product=products)
 
 #thank you note
 @app.route('/user_home')
 def thanku():
-<<<<<<< HEAD
-=======
-    user_id = session.get('user_id')
-    user_obj = User.query.filter_by(id=user_id).first()
-    cart_user = user_obj.username
-
-    # Clear the cart after buying
-    Cart.query.filter_by(cart_user=cart_user).delete()
-    db.session.commit()
->>>>>>> Cart_buyed_item_deleted
     return render_template("user_home.html")
 
 if __name__=="__main__":

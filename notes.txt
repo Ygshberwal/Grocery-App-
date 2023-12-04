@@ -1,0 +1,6 @@
+header1----> header   "home page header"
+header-----> manager_header
+header3 ----> user_header
+
+dashboard ---> user_dashboard
+dashboard2 ---> manager_dashboard
